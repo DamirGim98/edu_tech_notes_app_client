@@ -5,7 +5,7 @@ const Welcome = () => {
 
     const date = new Date()
     const today = new Intl.DateTimeFormat().format(date)
-    const { username, isAdmin, isManager } = useAuth()
+    const { username, isAdmin } = useAuth()
 
     const content = (
         <section className="welcome">

@@ -6,6 +6,7 @@ import {setCredentials} from "./authSlice";
 import {useLoginMutation} from "./authApiSlice";
 
 import usePersist from "../../hooks/usePersist";
+import ClockLoader from "react-spinners/ClockLoader";
 
 const Login = () => {
     const userRef = useRef()
@@ -56,7 +57,7 @@ const Login = () => {
     const handlePersist = () => setPersist(prevState => !prevState)
 
     if (isLoading) {
-        return <p>Loading...</p>
+        return <ClockLoader color={'#FFF'}/>
     }
 
     return (

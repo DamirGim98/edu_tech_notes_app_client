@@ -25,6 +25,7 @@ function App() {
                     <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]}/>}>
                         <Route element={<Prefetch/>}>{/*Subscribing to Notes and User on the Protected route!*/}
                             <Route path="dash" element={<DashLayout/>}>{/*Start of the Dash Route (Protected)*/}
+
                                 <Route index element={<Welcome/>}/>
 
                                 <Route path={"notes"}>
@@ -32,14 +33,15 @@ function App() {
                                     <Route path={':id'} element={<EditNote/>}/>
                                     <Route path={'new'} element={<NewNote/>}/>
                                 </Route>
-                                <Route element={<RequireAuth allowedRoles={[ROLES.Admin]}/>}>
 
+                                <Route element={<RequireAuth allowedRoles={[ROLES.Admin]}/>}>
                                     <Route path={"users"}>
                                         <Route index element={<UsersList/>}/>
                                         <Route path={':id'} element={<EditUser/>}/>
                                         <Route path={'new'} element={<NewUserForm/>}/>
                                     </Route>
                                 </Route>
+
                             </Route> {/*End of the Dash Route*/}
                         </Route>
                     </Route>
