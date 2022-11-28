@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap');
 
 * {
   margin: 0;
@@ -37,37 +37,33 @@
   white-space: nowrap;
 }
 
-.icon-button {
-  width: 48px;
-  height: 48px;
-  font-size: 2.5rem;
-  background-color: transparent;
+.text-button {
+  width: fit-content;
   border: none;
+  background-color: transparent;
   color: var(--COLOR);
-  display: grid;
-  place-content: center;
+  font-size: 1.25em;
 }
 
-.icon-button:hover,
-.icon-button:focus-visible {
+.text-button:hover,
+.text-button:focus-visible {
   transform: scale(1.2);
 }
 
-.icon-button[disabled] {
+.text-button[disabled] {
   visibility: hidden;
 }
 
 /* || GENERAL STYLES */
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Roboto Flex', sans-serif;
   min-height: 100vh;
   background-color: var(--BGCOLOR);
   color: var(--COLOR);
   background-image: url('./img/day_bg.jpg');
   background-size: cover;
   background-position: top right;
-  background-blend-mode: multiply;
 }
 
 input,
@@ -130,27 +126,33 @@ a:focus-visible {
 
 /* || DASH HEADER, CONTAINER & FOOTER */
 
+.dash-wrapper {
+  display: flex;
+}
+
 .dash-header {
-  position: sticky;
-  top: 0;
-  z-index: 1;
+  width: 30vw;
+  height: 100vh;
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
   background-color: var(--BGCOLOR);
-  padding: 0 0.5em;
-  border-bottom: 1px solid var(--BORDER-COLOR);
+  padding: 0.5em 0.5em;
 }
 
 .dash-header__container {
   display: flex;
-  flex-flow: row nowrap;
+  width: 100%;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .dash-header__nav {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: column;
   justify-content: flex-end;
-  gap: 0.5em;
+  gap: 1em;
 }
 
 .dash-container {
@@ -158,18 +160,9 @@ a:focus-visible {
   flex-grow: 1;
 }
 
-.dash-footer {
-  font-size: 1rem;
-  position: sticky;
-  bottom: 0;
-  z-index: 1;
-  background-color: var(--BGCOLOR);
-  padding: 0.5em;
-  border-top: 1px solid var(--BORDER-COLOR);
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  gap: 1em;
+.dash-header__user {
+  justify-self: flex-end;
+  margin-top: auto;
 }
 
 .dash-footer__button {
@@ -332,7 +325,7 @@ tr {
   }
 
   .icon-button {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
@@ -343,11 +336,11 @@ tr {
   }
 
   .dash-header {
-    padding: 0 1em;
+    padding: 2em 2em;
   }
 
   .dash-container {
-    padding: 1em;
+    padding: 2em;
   }
 
   .table {

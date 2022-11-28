@@ -5,7 +5,7 @@ import {
     faFileCirclePlus,
     faFilePen,
     faUserGear,
-    faUserPlus,
+    faUserPlus, faHouse,
 } from "@fortawesome/free-solid-svg-icons";
 import {useNavigate, Link, useLocation} from "react-router-dom";
 import {useSendLogoutMutation} from "../features/auth/authApiSlice";
@@ -14,7 +14,7 @@ import useAuth from "../hooks/useAuth";
 const DashHeader = () => {
     const navigate = useNavigate();
     const {pathname} = useLocation();
-    const {username, isManager, isAdmin} = useAuth()
+    const {username, isManager, isAdmin, status} = useAuth()
 
 
     const DASH_REGEX = /^\/dash(\/)?$/
@@ -47,20 +47,31 @@ const DashHeader = () => {
         return <p>Error: {error.data?.message}</p>
     }
 
-    let dashClass = null
-    if (!DASH_REGEX.test(pathname) && !NOTES_REGEX.test(pathname) && !USERS_REGEX.test(pathname)) {
-        dashClass = "dash-header__container--small"
+    const onGoHomeClicked = () => navigate('/dash');
+
+    let goHomeButton = null;
+
+    if (pathname !== '/dash') {
+        goHomeButton = (
+            <button
+                className={"text-button"}
+                title={"Home"}
+                onClick={onGoHomeClicked}
+            >
+                Back to Home
+            </button>
+        )
     }
 
     let newNoteButton = null
     if (NOTES_REGEX.test(pathname)) {
         newNoteButton = (
             <button
-                className="icon-button"
+                className="text-button"
                 title="New Note"
                 onClick={onNewNoteClicked}
             >
-                <FontAwesomeIcon icon={faFileCirclePlus}/>
+                Create new Note
             </button>
         )
     }
@@ -69,11 +80,11 @@ const DashHeader = () => {
     if (USERS_REGEX.test(pathname)) {
         newUserButton = (
             <button
-                className="icon-button"
+                className="text-button"
                 title="New User"
                 onClick={onNewUserClicked}
             >
-                <FontAwesomeIcon icon={faUserPlus}/>
+                Create New User
             </button>
         )
     }
@@ -83,11 +94,11 @@ const DashHeader = () => {
         if (!USERS_REGEX.test(pathname) && pathname.includes('/dash')) {
             userButton = (
                 <button
-                    className="icon-button"
+                    className="text-button"
                     title="Users"
                     onClick={onUsersClicked}
                 >
-                    <FontAwesomeIcon icon={faUserGear}/>
+                    Check all users
                 </button>
             )
         }
@@ -97,21 +108,21 @@ const DashHeader = () => {
     if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
         notesButton = (
             <button
-                className="icon-button"
+                className="text-button"
                 title="Notes"
                 onClick={onNotesClicked}
             >
-                <FontAwesomeIcon icon={faFilePen}/>
+                View notes
             </button>
         )
     }
     const logoutButton = (
         <button
-            className="icon-button"
+            className="text-button"
             title="Logout"
             onClick={sendLogout}
         >
-            <FontAwesomeIcon icon={faRightFromBracket}/>
+            Logout
         </button>
     )
 
@@ -125,6 +136,7 @@ const DashHeader = () => {
                 {newUserButton}
                 {notesButton}
                 {userButton}
+                {goHomeButton}
                 {logoutButton}
             </>
         )
@@ -132,23 +144,24 @@ const DashHeader = () => {
 
     const errClass = isError ? "errmsg" : "offscreen"
 
-    const content = (
+    return (
 
         <><p className={errClass}>{error?.data?.message}</p>
             <header className="dash-header">
-                <div className={`dash-header__container ${dashClass}`}>
-                    <Link to="/dash">
-                        <h1 className="dash-header__title">techNotes</h1>
-                    </Link>
+                <Link to="/dash">
+                    <h1 className="dash-header__title">techNotes</h1>
+                </Link>
+                <div className={`dash-header__container`}>
                     <nav className="dash-header__nav">
-                        {/* add nav buttons later */}
                         {buttonContent}
                     </nav>
                 </div>
+                <section className="dash-header__user">
+                    <p>Nice to see you back, {username}</p>
+                    <p>Role: {status}</p>
+                </section>
             </header>
         </>
     )
-
-    return content
 }
 export default DashHeader
