@@ -3,7 +3,7 @@ import { memo} from "react";
 
 import { useGetNotesQuery} from "./notesApiSlice";
 
-const Note = ({ noteId }) => {
+const Note = ({ noteId, ...args }) => {
 
     const { note } = useGetNotesQuery("notesList", {
         selectFromResult: ({data}) => ({
@@ -18,7 +18,7 @@ const Note = ({ noteId }) => {
         const handleEdit = () => navigate(`/dash/notes/${noteId}`)
 
         return (
-            <section className="note-container">
+            <section className="note-container" {...args}>
                 <p className="note__title">{note.title}</p>
                 <p className="note__creation">Created on {created} by <span className="note__author">{note.username}</span></p>
                 <p className="note__text">{note.text}</p>

@@ -55,6 +55,21 @@
   visibility: hidden;
 }
 
+.icon-button {
+  width: 48px;
+  height: 48px;
+  font-size: 2.5rem;
+  background-color: transparent;
+  border: none;
+  color: var(--COLOR);
+  display: grid;
+  place-content: center;
+}
+
+.icon-button:hover {
+  transform: scale(1.2);
+}
+
 /* || GENERAL STYLES */
 
 body {
@@ -186,19 +201,17 @@ a:focus-visible {
 /* || FLEX WRAP TABLE - GENERAL */
 
 .list {
-  width: 33%;
   height: 100%;
-
+  width: 100%;
   padding: 0.2em;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1em;
 
   overflow-y: scroll;
 
-  background-color: rgba(	255, 213, 128, 0.1);
+  background-color: rgba(136,136,136, 0.1);
   border-radius: 8px;
 }
 
@@ -206,11 +219,21 @@ a:focus-visible {
   display: none;
 }
 
+.list__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+
+  width: 33%;
+  height: 100%;
+}
+
 .list__title {
   font-family: 'Karla', sans-serif;
   font-size: 1.25em;
   font-weight: 800;
-  text-align: start;
+  align-self: center;
 }
 
 

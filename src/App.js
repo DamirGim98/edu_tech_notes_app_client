@@ -4,7 +4,6 @@ import Public from "./components/Public";
 import Login from "./features/auth/Login";
 import DashLayout from "./components/DashLayout";
 import Welcome from "./features/auth/Welcome";
-import NotesList from "./features/notes/NotesList";
 import UsersList from "./features/users/UsersList";
 import EditUser from "./features/users/EditUser";
 import EditNote from "./features/notes/EditNote";
@@ -14,6 +13,7 @@ import Prefetch from "./features/auth/Prefetch";
 import PersistLogin from "./features/auth/PersistLogin";
 import RequireAuth from "./features/auth/RequireAuth";
 import {ROLES} from "./config/roles";
+import NotesWrapper from "./features/notes/NotesWrapper";
 
 function App() {
     return (
@@ -29,7 +29,7 @@ function App() {
                                 <Route index element={<Welcome/>}/>
 
                                 <Route path={"notes"}>
-                                    <Route index element={<NotesList/>}/>
+                                    <Route index element={<NotesWrapper/>}/>
                                     <Route path={':id'} element={<EditNote/>}/>
                                     <Route path={'new'} element={<NewNote/>}/>
                                 </Route>

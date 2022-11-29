@@ -1,12 +1,4 @@
 import {useEffect} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faRightFromBracket,
-    faFileCirclePlus,
-    faFilePen,
-    faUserGear,
-    faUserPlus, faHouse,
-} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate, Link, useLocation} from "react-router-dom";
 import {useSendLogoutMutation} from "../features/auth/authApiSlice";
 import useAuth from "../hooks/useAuth";
