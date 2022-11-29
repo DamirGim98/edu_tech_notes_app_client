@@ -16,34 +16,19 @@ const Note = ({ noteId }) => {
     const navigate = useNavigate()
 
     if (note) {
-        const created = new Date(note.createdAt).toLocaleString('en-US', { day: 'numeric', month: 'long' })
+        const created = new Date(note.createdAt).toLocaleString('en-US', { day: 'numeric', month: 'short' })
 
-        const updated = new Date(note.updatedAt).toLocaleString('en-US', { day: 'numeric', month: 'long' })
+        const updated = new Date(note.updatedAt).toLocaleString('en-US', { day: 'numeric', month: 'short' })
 
         const handleEdit = () => navigate(`/dash/notes/${noteId}`)
 
         return (
-            <tr className="table__row">
-                <td className="table__cell note__status">
-                    {note.completed
-                        ? <span className="note__status--completed">Completed</span>
-                        : <span className="note__status--open">Open</span>
-                    }
-                </td>
-                <td className="table__cell note__created">{created}</td>
-                <td className="table__cell note__updated">{updated}</td>
-                <td className="table__cell note__title">{note.title}</td>
-                <td className="table__cell note__username">{note.username}</td>
-
-                <td className="table__cell">
-                    <button
-                        className="icon-button table__button"
-                        onClick={handleEdit}
-                    >
-                        <FontAwesomeIcon icon={faPenToSquare} />
-                    </button>
-                </td>
-            </tr>
+            <section className="note-container">
+                <p className="note__title">{note.title}</p>
+                <p className="note__creation">Created on {created} by <span className="note__author">{note.username}</span></p>
+                <p className="note__text">{note.text}</p>
+                <button onClick={handleEdit} className="text-button note__edit">Check out</button>
+            </section>
         )
 
     } else return null

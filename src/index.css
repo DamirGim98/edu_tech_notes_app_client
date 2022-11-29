@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@800&family=Roboto+Flex:opsz,wght@8..144,400;8..144,700&display=swap');
+
 
 * {
   margin: 0;
@@ -27,7 +28,7 @@
 /* || UTILITY CLASSES */
 .errmsg {
   display: inline-block;
-  background-color: var(--TABLE-BGCOLOR);
+  font-weight: 700;
   color: var(--ERROR);
   padding: 0.25em;
   margin-bottom: 0.5em;
@@ -59,11 +60,12 @@
 body {
   font-family: 'Roboto Flex', sans-serif;
   min-height: 100vh;
-  background-color: var(--BGCOLOR);
+  background-color: #add8e6;
   color: var(--COLOR);
-  background-image: url('./img/day_bg.jpg');
-  background-size: cover;
-  background-position: top right;
+  background-image: url('./img/Home.png');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: bottom right;
 }
 
 input,
@@ -156,9 +158,15 @@ a:focus-visible {
 }
 
 .dash-container {
+  height: 100vh;
   padding: 0.75em 0.5em 0.5em;
+
+  display: flex;
   flex-grow: 1;
+  gap: 1em;
+
 }
+
 
 .dash-header__user {
   justify-self: flex-end;
@@ -169,6 +177,35 @@ a:focus-visible {
   font-size: 1rem;
   width: auto;
   height: auto;
+}
+/* || FLEX WRAP TABLE - GENERAL */
+
+.list {
+  width: 33%;
+  height: 100%;
+
+  padding: 0.2em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+
+  overflow-y: scroll;
+
+  background-color: rgba(	255, 213, 128, 0.1);
+  border-radius: 8px;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.list__title {
+  font-family: 'Karla', sans-serif;
+  font-size: 1.25em;
+  font-weight: 800;
+  text-align: start;
 }
 
 
@@ -219,6 +256,59 @@ tr {
 }
 
 /* ||  NOTE */
+
+.note-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 16px;
+
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: fit-content;
+  max-height: 350px;
+
+  background: #FCFCFD;
+  /* Custom/sm */
+
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.3);
+  border-radius: 8px;
+}
+
+.note__title {
+  color: #1D2939;
+  font-weight: 700;
+  font-size: 1.25em;
+}
+
+.note__creation {
+  color: darkgray;
+  font-size: 0.85em;
+  line-height: 1.5em;
+}
+
+.note__author {
+  color: #667085;
+}
+
+.note__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  color: #98A2B3;
+}
+
+.note__edit {
+  color: black;
+  font-size: 1em;
+  background: #F2F4F7;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
 
 .note__created,
 .note__updated,
