@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAddNewNoteMutation } from "./notesApiSlice"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSave } from "@fortawesome/free-solid-svg-icons"
+import useAuth from "../../hooks/useAuth";
 
 const NewNoteForm = ({ users }) => {
 
@@ -14,10 +13,12 @@ const NewNoteForm = ({ users }) => {
     }] = useAddNewNoteMutation()
 
     const navigate = useNavigate()
+    const {username} = useAuth()
 
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
-    const [userId, setUserId] = useState(users[0].id)
+    const {id: name} = users.find(user => user.username === username);
+    const [userId, setUserId] = useState(name)
 
     useEffect(() => {
         if (isSuccess) {
@@ -30,7 +31,6 @@ const NewNoteForm = ({ users }) => {
 
     const onTitleChanged = e => setTitle(e.target.value)
     const onTextChanged = e => setText(e.target.value)
-    const onUserIdChanged = e => setUserId(e.target.value)
 
     const canSave = [title, text, userId].every(Boolean) && !isLoading
 
@@ -41,20 +41,11 @@ const NewNoteForm = ({ users }) => {
         }
     }
 
-    const options = users.map(user => {
-        return (
-            <option
-                key={user.id}
-                value={user.id}
-            > {user.username}</option >
-        )
-    })
-
     const errClass = isError ? "errmsg" : "offscreen"
     const validTitleClass = !title ? "form__input--incomplete" : ''
     const validTextClass = !text ? "form__input--incomplete" : ''
 
-    const content = (
+    return (
         <>
             <p className={errClass}>{error?.data?.message}</p>
 
@@ -63,11 +54,11 @@ const NewNoteForm = ({ users }) => {
                     <h2>New Note</h2>
                     <div className="form__action-buttons">
                         <button
-                            className="icon-button"
+                            className="text-button"
                             title="Save"
                             disabled={!canSave}
                         >
-                            <FontAwesomeIcon icon={faSave} />
+                            Save
                         </button>
                     </div>
                 </div>
@@ -92,24 +83,9 @@ const NewNoteForm = ({ users }) => {
                     value={text}
                     onChange={onTextChanged}
                 />
-
-                <label className="form__label form__checkbox-container" htmlFor="username">
-                    ASSIGNED TO:</label>
-                <select
-                    id="username"
-                    name="username"
-                    className="form__select"
-                    value={userId}
-                    onChange={onUserIdChanged}
-                >
-                    {options}
-                </select>
-
             </form>
         </>
     )
-
-    return content
 }
 
 export default NewNoteForm

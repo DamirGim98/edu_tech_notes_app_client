@@ -35,21 +35,27 @@ const NotesList = () => {
             filteredIds = ids.filter(noteId => entities[noteId].username === username)
         }
 
-        const tableContent = ids?.length && filteredIds.map(noteId => <Note key={noteId} noteId={noteId}/>)
-
+        const startedNotes = ids?.length && filteredIds.filter(noteId => entities[noteId].completed === 1).map(noteId =>
+            <Note key={noteId} noteId={noteId}/>)
+        const inProgressNotes = ids?.length && filteredIds.filter(noteId => entities[noteId].completed === 2).map(noteId =>
+            <Note key={noteId} noteId={noteId}/>)
+        const completedNotes = ids?.length && filteredIds.filter(noteId => entities[noteId].completed === 3).map(noteId =>
+            <Note key={noteId} noteId={noteId}/>)
         content = (
-            <>
+            <div className="list-container">
                 <div className="list">
                     <p className="list__title">Not started yet</p>
-                    {tableContent}
+                    {startedNotes}
                 </div>
                 <div className="list">
                     <p className="list__title">In progress</p>
+                    {inProgressNotes}
                 </div>
                 <div className="list">
                     <p className="list__title">Completed</p>
+                    {completedNotes}
                 </div>
-            </>
+            </div>
         )
     }
 

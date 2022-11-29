@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from 'react-router-dom'
 import { memo} from "react";
 
@@ -17,9 +15,6 @@ const Note = ({ noteId }) => {
 
     if (note) {
         const created = new Date(note.createdAt).toLocaleString('en-US', { day: 'numeric', month: 'short' })
-
-        const updated = new Date(note.updatedAt).toLocaleString('en-US', { day: 'numeric', month: 'short' })
-
         const handleEdit = () => navigate(`/dash/notes/${noteId}`)
 
         return (
