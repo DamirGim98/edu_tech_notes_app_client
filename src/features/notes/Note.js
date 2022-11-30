@@ -22,7 +22,7 @@ const Note = ({ noteId, ...args }) => {
                 <p className="note__title">{note.title}</p>
                 <p className="note__creation">Created on {created} by <span className="note__author">{note.username}</span></p>
                 <p className="note__text">{note.text}</p>
-                <button onClick={handleEdit} className="text-button note__edit">Check out</button>
+                <button onClick={handleEdit} className="text-button note__edit">Look up</button>
             </section>
         )
 

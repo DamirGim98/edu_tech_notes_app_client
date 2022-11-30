@@ -3,11 +3,10 @@ import useAuth from "../../hooks/useAuth";
 
 const Welcome = () => {
 
-    const date = new Date()
-    const today = new Intl.DateTimeFormat().format(date)
+    const today = new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'2-digit', year:'numeric'}).format(new Date())
     const { username, isAdmin } = useAuth()
 
-    const content = (
+    return (
         <section className="welcome">
 
             <p>{today}</p>
@@ -20,11 +19,7 @@ const Welcome = () => {
 
             {isAdmin && <p><Link to="/dash/users">View User Settings</Link></p>}
             {isAdmin && <p><Link to="/dash/users/new">Add New User</Link></p>}
-
-
         </section>
     )
-
-    return content
 }
 export default Welcome

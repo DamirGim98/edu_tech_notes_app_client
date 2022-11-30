@@ -2,11 +2,12 @@ import {useEffect} from "react";
 import {useNavigate, Link, useLocation} from "react-router-dom";
 import {useSendLogoutMutation} from "../features/auth/authApiSlice";
 import useAuth from "../hooks/useAuth";
+import TimerComponent from "./Timer/TimerComponent";
 
 const DashHeader = () => {
     const navigate = useNavigate()
     const {pathname} = useLocation()
-    const {username, isManager, isAdmin, status} = useAuth()
+    const {isManager, isAdmin} = useAuth()
 
     const NOTES_REGEX = /^\/dash\/notes(\/)?$/
     const USERS_REGEX = /^\/dash\/users(\/)?$/
@@ -146,10 +147,8 @@ const DashHeader = () => {
                         {buttonContent}
                     </nav>
                 </div>
-                <section className="dash-header__user">
-                    <p>Nice to see you back, {username}</p>
-                    <p>Role: {status}</p>
-                </section>
+
+                <TimerComponent/>
             </header>
         </>
     )

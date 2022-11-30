@@ -8,12 +8,7 @@ import {useUpdateNoteMutation} from "./notesApiSlice";
 const NotesList = ({notes}) => {
     const {username, isAdmin, isManager} = useAuth()
 
-    const [updateNote, {
-        isLoading,
-        isSuccess,
-        isError,
-        error
-    }] = useUpdateNoteMutation()
+    const [updateNote] = useUpdateNoteMutation()
 
     const {ids, entities} = notes
 

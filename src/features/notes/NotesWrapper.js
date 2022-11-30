@@ -6,7 +6,6 @@ const NotesWrapper = () => {
     const {
         data,
         isLoading,
-        isSuccess,
         isError,
         error
     } = useGetNotesQuery("notesList", {
