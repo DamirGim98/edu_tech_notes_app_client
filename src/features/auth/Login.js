@@ -1,5 +1,5 @@
 import {useRef, useState, useEffect} from "react";
-import {useNavigate, Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import {useDispatch} from "react-redux";
 import {setCredentials} from "./authSlice";
@@ -63,7 +63,7 @@ const Login = () => {
     return (
         <section className="public">
             <header>
-                <h1>Employee Login</h1>
+                <h1>Login</h1>
             </header>
             <main className="login">
                 <p ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>
@@ -105,7 +105,13 @@ const Login = () => {
                 </form>
             </main>
             <footer>
-                <Link to="/">Back to Home</Link>
+                <button
+                    className="text-button styled-button"
+                    title="HomePage"
+                    onClick={() => navigate('/')}
+                >
+                    Back to Home page
+                </button>
             </footer>
         </section>
     );

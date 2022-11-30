@@ -1,28 +1,36 @@
-import { Link } from 'react-router-dom';
+import {useNavigate} from "react-router-dom";
+
 
 const Public = () => {
-    const content = (
+    const navigate = useNavigate()
+    return (
         <section className="public">
             <header>
-                <h1>Welcome to <span className="nowrap">Dan D. Repairs!</span></h1>
+                <h1>This is <span className="nowrap">simple CRUD App written with<br/>RTK Query and React JS</span></h1>
             </header>
             <main className="public__main">
-                <p>Located in Beautiful Downtown Foo City, Dan D. Repairs  provides a trained staff ready to meet your tech repair needs.</p>
-                <address className="public__addr">
-                    Dan D. Repairs<br />
-                    555 Foo Drive<br />
-                    Foo City, CA 12345<br />
-                    <a href="tel:+15555555555">(555) 555-5555</a>
-                </address>
-                <br />
-                <p>Owner: Dan Davidson</p>
+                <p>Backend part is written with Express in NodeJS environment, using AsyncHandler, JWT and some built in
+                    middlewares. For database part MongoDb and Mongoose were used, for sake of simplicity and wide
+                    functionality</p>
+                <br/>
+                <p>Frontend communication is supported by RTK Query, allowing precise control for caching data,
+                    invalidating data, making subscriptions for endpoints and great integration with Redux API</p>
+                <br/>
+                <p>Written by Damir G.</p>
+                <br/>
+                <p>Inspired by greatest Dave Gray :)</p>
             </main>
             <footer>
-                <Link to="/login">Employee Login</Link>
+                <button
+                    className="text-button styled-button"
+                    title="Authenticate"
+                    onClick={() => navigate('/login')}
+                >
+                    Login
+                </button>
             </footer>
         </section>
 
     )
-    return content
 }
 export default Public

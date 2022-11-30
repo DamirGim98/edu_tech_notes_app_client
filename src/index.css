@@ -118,19 +118,33 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  align-self: start;
 }
 
 .public {
-  padding: 1em;
-  flex-grow: 1;
+  align-self: center;
+  margin: auto;
+  width: 50%;
+
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2em;
+
+  border-radius: 2em;
 }
 
 .public__main,
 .login {
   flex-grow: 1;
-  border-top: 2px solid var(--BORDER-COLOR);
-  border-bottom: 2px solid var(--BORDER-COLOR);
   padding: 1em 0;
+}
+
+.styled-button {
+  font-size: 1em;
+  padding: 0.2em 0.7em;
+
+  background-color: rgba(32,32,32, 0.6);
+  border-radius: 1em;
 }
 
 .public__addr {
@@ -173,6 +187,8 @@ a:focus-visible {
 }
 
 .dash-container {
+  display: flex;
+  align-items: center;
   height: 100vh;
   padding: 0.75em 0.5em 0.5em;
   flex-grow: 1;
@@ -252,6 +268,8 @@ tr {
   grid-template-columns: 1fr 2fr 1fr;
   color: var(--TABLE-COLOR);
   gap: 0.1em;
+
+  align-self: start;
 }
 
 .table__button {
@@ -360,10 +378,14 @@ tr {
 /* || FORM - GENERAL */
 
 .form {
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   gap: 0.75em;
-  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2em;
+
+  border-radius: 2em;
 }
 
 .form__checkbox-container {
@@ -393,6 +415,7 @@ tr {
 }
 
 .form__input--text {
+  height: 250px;
   min-height: 150px;
 }
 

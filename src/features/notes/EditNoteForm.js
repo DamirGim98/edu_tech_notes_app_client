@@ -63,7 +63,7 @@ const EditNoteForm = ({ note, users }) => {
 
 
     let deleteButton = null
-    if (isManager || isAdmin) {
+    if (isManager || isAdmin || note.username === username) {
         deleteButton = (
             <button
                 className="text-button"

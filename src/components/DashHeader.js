@@ -8,11 +8,6 @@ const DashHeader = () => {
     const {pathname} = useLocation()
     const {username, isManager, isAdmin, status} = useAuth()
 
-    const date = new Date()
-    const today = new Intl.DateTimeFormat().format(date)
-
-
-    const DASH_REGEX = /^\/dash(\/)?$/
     const NOTES_REGEX = /^\/dash\/notes(\/)?$/
     const USERS_REGEX = /^\/dash\/users(\/)?$/
 
@@ -154,7 +149,6 @@ const DashHeader = () => {
                 <section className="dash-header__user">
                     <p>Nice to see you back, {username}</p>
                     <p>Role: {status}</p>
-                    <p>{today}</p>
                 </section>
             </header>
         </>
