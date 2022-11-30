@@ -3,9 +3,17 @@ import useAuth from "../../hooks/useAuth";
 import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 import {useState} from "react";
 import {v4 as uuid} from 'uuid';
+import {useUpdateNoteMutation} from "./notesApiSlice";
 
 const NotesList = ({notes}) => {
     const {username, isAdmin, isManager} = useAuth()
+
+    const [updateNote, {
+        isLoading,
+        isSuccess,
+        isError,
+        error
+    }] = useUpdateNoteMutation()
 
     const {ids, entities} = notes
 
@@ -17,15 +25,18 @@ const NotesList = ({notes}) => {
     }
 
     const startedNotes = {
+        completed: 1,
         items: ids?.length && filteredIds.filter(noteId => entities[noteId].completed === 1),
         name: 'Not started yet'
     }
     const inProgressNotes = {
+        completed: 2,
         items: ids?.length && filteredIds.filter(noteId => entities[noteId].completed === 2),
         name: 'In progress'
     }
 
     const completedNotes = {
+        completed: 3,
         items: ids?.length && filteredIds.filter(noteId => entities[noteId].completed === 3),
         name: "Completed"
     }
@@ -36,7 +47,8 @@ const NotesList = ({notes}) => {
         [uuid()]: completedNotes,
     })
 
-    const onDragEnd = (result, columns, setColumns) => {
+    const onDragEnd = async (result, columns, setColumns) => {
+        console.log(result)
         if (!result.destination) return;
         const {source, destination} = result;
 
@@ -58,6 +70,17 @@ const NotesList = ({notes}) => {
                     items: destItems
                 }
             });
+
+            const currentNote = entities[result.draggableId]
+            await updateNote({
+                id: currentNote.id,
+                userId: currentNote.userId,
+                title: currentNote.title,
+                text: currentNote.text,
+                completed: destColumn.completed
+            })
+
+
         } else {
             const column = columns[source.droppableId];
             const copiedItems = [...column.items];

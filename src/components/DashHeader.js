@@ -4,9 +4,12 @@ import {useSendLogoutMutation} from "../features/auth/authApiSlice";
 import useAuth from "../hooks/useAuth";
 
 const DashHeader = () => {
-    const navigate = useNavigate();
-    const {pathname} = useLocation();
+    const navigate = useNavigate()
+    const {pathname} = useLocation()
     const {username, isManager, isAdmin, status} = useAuth()
+
+    const date = new Date()
+    const today = new Intl.DateTimeFormat().format(date)
 
 
     const DASH_REGEX = /^\/dash(\/)?$/
@@ -151,6 +154,7 @@ const DashHeader = () => {
                 <section className="dash-header__user">
                     <p>Nice to see you back, {username}</p>
                     <p>Role: {status}</p>
+                    <p>{today}</p>
                 </section>
             </header>
         </>

@@ -1,5 +1,6 @@
 import {useGetNotesQuery} from "./notesApiSlice";
 import NotesList from "./NotesList";
+import ClockLoader from "react-spinners/ClockLoader";
 
 const NotesWrapper = () => {
     const {
@@ -8,13 +9,11 @@ const NotesWrapper = () => {
         isSuccess,
         isError,
         error
-    } = useGetNotesQuery(undefined, {
-        pollingInterval: 60000,
-        refetchOnFocus: true,
-        refetchOnMountOrArgChange: true,
+    } = useGetNotesQuery("notesList", {
+        pollingInterval: 120000,
     })
 
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <ClockLoader cssOverride={{margin: "0 auto"}} color={'#FFF'}/>
 
     if (isError) {
         return <p className="errmsg">{error?.data?.message}</p>
