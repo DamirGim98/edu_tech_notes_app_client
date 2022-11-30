@@ -32,13 +32,20 @@ function Public() {
         <br />
         <p>Inspired by greatest Dave Gray :)</p>
       </main>
-      <footer>
+      <footer className="public__footer">
         <button
           className="text-button styled-button"
           title="Authenticate"
           onClick={() => navigate('/login')}
         >
           Login
+        </button>
+        <button
+          className="text-button styled-button"
+          title="Register"
+          onClick={() => navigate('/register')}
+        >
+          Register
         </button>
       </footer>
     </section>

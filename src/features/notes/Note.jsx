@@ -25,7 +25,7 @@ function Note({ noteId, ...args }) {
         <p className="note__creation">
           Created on
           {created} by
-          <span className="note__author">{note.username}</span>
+          <span className="note__author"> {note.username}</span>
         </p>
         <p className="note__text">{note.text}</p>
         <button onClick={handleEdit} className="text-button note__edit">

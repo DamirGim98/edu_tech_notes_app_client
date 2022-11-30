@@ -7,8 +7,9 @@ import { setCredentials } from './authSlice'
 import { useLoginMutation } from './authApiSlice'
 
 import usePersist from '../../hooks/usePersist'
+import { useAddNewUserMutation } from '../users/usersApiSlice'
 
-function Login() {
+function Login({ isRegister }) {
   const userRef = useRef()
   const errRef = useRef()
   const [username, setUsername] = useState('')
@@ -19,6 +20,8 @@ function Login() {
   const [persist, setPersist] = usePersist()
 
   const [login, { isLoading }] = useLoginMutation()
+
+  const [addNewUser] = useAddNewUserMutation()
 
   useEffect(() => {
     userRef.current.focus()
@@ -33,6 +36,9 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      if (isRegister) {
+        await addNewUser({ username, password, roles: ['Employee'] })
+      }
       const { accessToken } = await login({ username, password }).unwrap()
       dispatch(setCredentials({ accessToken }))
       setUsername('')
@@ -63,7 +69,7 @@ function Login() {
   return (
     <section className="public">
       <header>
-        <h1>Login</h1>
+        <h1>{isRegister ? 'Register' : 'Login'}</h1>
       </header>
       <main className="login">
         <p ref={errRef} className={errClass} aria-live="assertive">
@@ -92,18 +98,20 @@ function Login() {
             value={password}
             required
           />
-          <button className="form__submit-button">Sign In</button>
+          <button className="form__submit-button">Proceed</button>
 
-          <label htmlFor="persist" className="form__persist">
-            <input
-              type="checkbox"
-              className="form__checkbox"
-              id="persist"
-              onChange={handlePersist}
-              checked={!!persist}
-            />
-            Trust This Device
-          </label>
+          {!isRegister && (
+            <label htmlFor="persist" className="form__persist">
+              <input
+                type="checkbox"
+                className="form__checkbox"
+                id="persist"
+                onChange={handlePersist}
+                checked={!!persist}
+              />
+              Trust This Device
+            </label>
+          )}
         </form>
       </main>
       <footer>
