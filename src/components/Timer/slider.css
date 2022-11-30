@@ -1,21 +1,21 @@
-.slider{
-    height: 40px;
-    border: 1px solid transparent;
-    border-radius: 20px;
-    background-color: lightslategrey;
+.slider {
+  height: 40px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background-color: lightslategrey;
 }
 
-.thumb{
-    background-color: indianred;
-    cursor:pointer;
-    width:40px;
-    height: 40px;
-    border-radius: 20px;
+.thumb {
+  background-color: indianred;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
 }
 
-.slider.green{
-    background-color: darkslategrey;
+.slider.green {
+  background-color: darkslategrey;
 }
-.slider.green .thumb{
-    background-color: green;
+.slider.green .thumb {
+  background-color: green;
 }
