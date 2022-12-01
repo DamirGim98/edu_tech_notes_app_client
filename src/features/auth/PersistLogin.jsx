@@ -1,6 +1,7 @@
 import { Outlet, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import ClockLoader from 'react-spinners/ClockLoader'
 import { useRefreshMutation } from './authApiSlice'
 import usePersist from '../../hooks/usePersist'
 import { selectAccessToken } from './authSlice'
@@ -31,7 +32,7 @@ const PersistLogin = () => {
   if (!persist) {
     content = <Outlet />
   } else if (isLoading) {
-    content = <p>Loading...</p>
+    content = <ClockLoader className="loader" color="#FFF" />
   } else if (isError) {
     content = (
       <p className="errmsg">

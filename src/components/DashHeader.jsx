@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
+import ClockLoader from 'react-spinners/ClockLoader'
 import { useSendLogoutMutation } from '../features/auth/authApiSlice'
 import useAuth from '../hooks/useAuth'
 import TimerComponent from './Timer/TimerComponent'
@@ -104,7 +105,7 @@ function DashHeader() {
 
   let buttonContent
   if (isLoading) {
-    buttonContent = <p>Logging Out...</p>
+    buttonContent = <ClockLoader className="loader" color="#FFF" />
   } else {
     buttonContent = (
       <>

@@ -30,7 +30,7 @@ function EditNote() {
   return note && users ? (
     <EditNoteForm note={note} users={users} />
   ) : (
-    <ClockLoader color="#FFF" />
+    <ClockLoader className="loader" color="#FFF" />
   )
 }
 export default EditNote

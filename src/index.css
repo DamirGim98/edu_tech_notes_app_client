@@ -25,6 +25,12 @@
 }
 
 /* || UTILITY CLASSES */
+.loader {
+  justify-self: center;
+  align-self: center;
+  margin: auto;
+}
+
 .errmsg {
   display: inline-block;
   font-weight: 700;

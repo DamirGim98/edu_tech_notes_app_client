@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from '@fortawesome/free-solid-svg-icons'
+import ClockLoader from 'react-spinners/ClockLoader'
 import { useAddNewUserMutation } from './usersApiSlice'
 import ROLES from '../../config/roles'
 
@@ -68,6 +69,8 @@ function NewUserForm() {
   const validUserClass = !validUsername ? 'form__input--incomplete' : ''
   const validPwdClass = !validPassword ? 'form__input--incomplete' : ''
   const validRolesClass = !roles.length ? 'form__input--incomplete' : ''
+
+  if (isLoading) return <ClockLoader className="loader" color="#FFF" />
 
   return (
     <>

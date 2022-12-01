@@ -9,7 +9,7 @@ function NewNote() {
     }),
   })
 
-  if (!users?.length) return <ClockLoader color="#FFF" />
+  if (!users?.length) return <ClockLoader className="loader" color="#FFF" />
 
   return <NewNoteForm users={users} />
 }
