@@ -191,16 +191,14 @@ a:focus-visible {
 
 .dash-container {
   display: flex;
-  align-items: center;
   height: 100vh;
   padding: 0.75em 0.5em 0.5em;
   flex-grow: 1;
 }
 
 .list-container {
-  padding: 0.75em 0.5em 0.5em;
-  height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   flex-grow: 1;
   gap: 1em;
 }
@@ -226,14 +224,10 @@ a:focus-visible {
   flex-direction: column;
   align-items: center;
 
-  overflow-y: scroll;
+
 
   background-color: rgba(136, 136, 136, 0.1);
   border-radius: 8px;
-}
-
-.list::-webkit-scrollbar {
-  display: none;
 }
 
 .list__wrapper {
@@ -242,8 +236,12 @@ a:focus-visible {
   align-items: center;
   gap: 1em;
 
-  width: 33%;
+  overflow-y: scroll;
   height: 100%;
+}
+
+.list__wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .list__title {
