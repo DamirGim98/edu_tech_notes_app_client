@@ -1,7 +1,8 @@
+import ClockLoader from 'react-spinners/ClockLoader'
 import { useGetUsersQuery } from './usersApiSlice'
 import User from './User'
 
-const UsersList = () => {
+function UsersList() {
   const {
     data: users,
     isLoading,
@@ -14,11 +15,9 @@ const UsersList = () => {
     refetchOnMountOrArgChange: true,
   })
 
-  let content
-
-  if (isLoading) content = <p>Loading...</p>
+  if (isLoading) return <ClockLoader className="loader" color="#FFF" />
   if (isError) {
-    content = <p className="errmsg">{error?.data?.message}</p>
+    return <p className="errmsg">{error?.data?.message}</p>
   }
 
   if (isSuccess) {
@@ -27,7 +26,7 @@ const UsersList = () => {
     const tableContent =
       ids?.length && ids.map((userId) => <User key={userId} userId={userId} />)
 
-    content = (
+    return (
       <table className="table table--users">
         <thead className="table__thead">
           <tr>
@@ -46,8 +45,6 @@ const UsersList = () => {
       </table>
     )
   }
-
-  return content
 }
 
 export default UsersList

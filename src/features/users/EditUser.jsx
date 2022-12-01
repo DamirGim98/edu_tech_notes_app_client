@@ -13,6 +13,10 @@ function EditUser() {
     }),
   })
 
-  return user ? <EditUserForm user={user} /> : <ClockLoader color="#FFF" />
+  return user ? (
+    <EditUserForm user={user} />
+  ) : (
+    <ClockLoader className="loader" color="#FFF" />
+  )
 }
 export default EditUser

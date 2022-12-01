@@ -63,7 +63,7 @@ function Login({ isRegister }) {
   const handlePersist = () => setPersist((prevState) => !prevState)
 
   if (isLoading) {
-    return <ClockLoader color="#FFF" />
+    return <ClockLoader className="loader" color="#FFF" />
   }
 
   return (

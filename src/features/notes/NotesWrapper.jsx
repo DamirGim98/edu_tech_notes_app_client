@@ -7,8 +7,7 @@ function NotesWrapper() {
     pollingInterval: 120000,
   })
 
-  if (isLoading)
-    return <ClockLoader cssOverride={{ margin: '0 auto' }} color="#FFF" />
+  if (isLoading) return <ClockLoader className="loader" color="#FFF" />
 
   if (isError) {
     return <p className="errmsg">{error?.data?.message}</p>
